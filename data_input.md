@@ -35,7 +35,7 @@ Die Gemeinde Dirmstein stellt das Untersuchungsobjekt dar, und an ihr werden Eig
 * Ein selbst zu erhebender Datensatz im Format einer GeoPackage-Datei mit vier Punktlayern, welche Arten städtebaulicher Funktionsverluste behandeln
 * Städtebauliche Unternutzungen richten sich sinngemäß nach der Definition städtebaulicher Funktionsverluste aus § 171a Abs. 2 S. 2 BauGB (Leerstand und Baulücke) mit zusätzlichen temporären Funktionsverlusten (Aktives Bauvorhaben)
 * Die vier Punktlayer sind dementsprechend jeweils für die aktiven Bauvorhaben, Baulücken, Leerstände und Unternutzungen im gesamten
-* In der Attributtabelle sollte mindestens der `typ` der Unternutzung enthalten sein
+* In der Attributtabelle sollte mindestens eine Kennzeichnung zur Art der Unternutzung (`typ`) enthalten sein
 
 ### Vorgehen bei der Erhebung
 
