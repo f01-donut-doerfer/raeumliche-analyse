@@ -18,7 +18,7 @@ Danach wird Gebäudealter wird auf einem zensusbasierten 100-m-Gitter ausgewerte
 
 Die Skripte erzeugen in dem Ordner `workflow` mehrere Datensätze:
 
-- Aggregierte Flurstücke innerhalb des Siedlungskörpers (`4_Clip_ParzellenEigentum_Ortslage.gpkg `)
+- Aggregierte Flurstücke innerhalb des Siedlungskörpers (`4_Clip_ParzellenEigentum_Ortslage.gpkg`)
 - Flurstücke, die von Unternutzung betroffen sind, aufgeteilt nach der gesamter Unternutzung, aktiven Bauvorhaben, Baulücken und Leerstand
 - Hotspot-Layer für Eigentümer:innen pro Flurstück und Flurstücke pro Eigentümer:in sowie das Alter der Eigentümer:innen
 - Ein Tabellendokument (Word) mit Kreuztabellen der Unternutzung nach Landnutzung und Eigentümertyp
