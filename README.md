@@ -53,7 +53,7 @@ Der Prozess umfasst diese Hauptschritte:
    Unternutzungsarten.
 4. **Hotspots** (`02_TF1_Hotspots.R`, R) – inkrementelle Bestimmung der räumlichen Autokorrelation und Getis-Ord-Gi\*-Hotspot-Klassifikation für Eigentümer:innen pro Flurstück, Flurstücke pro Eigentümer:in und Eigentümeralter.
 5. **Tabellen** (`03_TF2_Tabellen.r`, R) – Kreuztabellen der Unternutzung nach Landnutzung und Eigentümertyp, exportiert als formatiertes Word-Dokument.
-6. **Gebäudealter** (`04_FF1_Baujahr.R`, R) – Aufbau eines am Zensus ausgerichteten 100-m-Gitters und Ableitung der dominanten Bauepoche je Zelle.
+6. **Gebäudealter** (`04_FF1_Baujahr.R`, R) – Aufbau eines am Zensus ausgerichteten 100-Meter-Gitters und Ableitung der dominanten Bauepoche je Zelle.
 7. **Ripley-L** (`05_FF1_RipleyL.R`, R) – Clusteranalyse der Unternutzungspunkte und Bestimmung charakteristischer Clusterungsdistanzen.
 8. **KDE-Heatmaps** (`06_FF1_KDE_Heatmap.py`, QGIS) – Kerndichteschätzung der Unternutzungsintensität, wobei die Clusterungsdistanzen aus dem Ripley-L-Schritt als Suchradien dienen.
 
