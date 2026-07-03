@@ -12,7 +12,7 @@ Zunächst werden die Eigentumsdaten typisiert und konsolidiert. Ausgehend von de
 
 Mit dem entstehenden Datensatz werden mehrere Analysen durchgeführt. Eine Hotspot-Analyse nach [Getis-Ord Gi\*](https://doi.org/10.1111/j.1538-4632.1995.tb00912.x) identifiziert statistisch signifikante Cluster hoher oder niedriger Werte für die Anzahl der Eigentümer:innen pro Flurstück, die Anzahl der Flurstücke pro Eigentümer:in und das Alter; die Distanzklasse je Variable wird automatisch über eine inkrementelle Bestimmung der räumlichen Autokorrelation nach Moran's I gewählt. Kreuztabellen fassen den Anteil der Unternutzung nach Landnutzung und nach Eigentümer:innen-Typ zusammen und werden als formatiertes Tabellendokument exportiert.
 
-Danach wird Gebäudealter wird auf einem zensusbasierten 100-m-Gitter ausgewertet, wobei in jeder Zelle das dominante Baujahrzehnt bestimmt wird. Die räumliche Clusterung der Unternutzungen werden mit der Ripley-L-Funktion untersucht; ihre lokalen Maxima liefern charakteristische Clusterungsdistanzen auf mikro-, meso- und makrostruktureller Ebene. Diese Distanzen werden als Suchradien für die Kerndichteschätzung wiederverwendet und ergeben Heatmaps der Unternutzungsintensität.
+Danach wird das Gebäudealter auf einem zensusbasierten 100-m-Gitter ausgewertet, wobei in jeder Zelle das dominante Baujahrzehnt bestimmt wird. Die räumliche Clusterung der Unternutzungen werden mit der Ripley-L-Funktion untersucht; ihre lokalen Maxima liefern charakteristische Clusterungsdistanzen auf mikro-, meso- und makrostruktureller Ebene. Diese Distanzen werden als Suchradien für die Kerndichteschätzung wiederverwendet und ergeben Heatmaps der Unternutzungsintensität.
 
 ## Output
 
@@ -21,9 +21,11 @@ Die Skripte erzeugen in dem Ordner `workflow` mehrere Datensätze:
 - Aggregierte Flurstücke innerhalb des Siedlungskörpers (`4_Clip_ParzellenEigentum_Ortslage.gpkg`)
 - Flurstücke, die von Unternutzung betroffen sind, aufgeteilt nach der gesamter Unternutzung, aktiven Bauvorhaben, Baulücken und Leerstand
 - Hotspot-Layer für Eigentümer:innen pro Flurstück und Flurstücke pro Eigentümer:in sowie das Alter der Eigentümer:innen
-- Ein Tabellendokument (Word) mit Kreuztabellen der Unternutzung nach Landnutzung und Eigentümertyp
+- Ein Tabellendokument (Word) mit Kreuztabellen der Unternutzung nach Landnutzung und Eigentümer:innen-Typ
 - Ein Gitterlayer mit der dominanten Bauepoche je Zelle
 - Punktlayer je Unternutzungsart sowie KDE-Heatmap-Raster der Unternutzungsintensität
+
+> Anmerkung: Sensible Angaben zu den Eigentümer:innen wurden im Ordner `workflow` geschwärzt.
 
 ## Erste Schritte
 
@@ -57,15 +59,15 @@ Der Prozess umfasst diese Hauptschritte:
 7. **Ripley-L** (`05_FF1_RipleyL.R`, R) – Clusteranalyse der Unternutzungspunkte und Bestimmung charakteristischer Clusterungsdistanzen.
 8. **KDE-Heatmaps** (`06_FF1_KDE_Heatmap.py`, QGIS) – Kerndichteschätzung der Unternutzungsintensität, wobei die Clusterungsdistanzen aus dem Ripley-L-Schritt als Suchradien dienen.
 
-Die QGIS-`.py`-Schritte werden innerhalb von QGIS ausgeführt, das eigenständige Python-Skript und die R-Skripte in ihrer jeweiligen Umgebung, in der nummerierten Reihenfolge. Die Datei-Präfixe (`TF`, `FF`) gruppieren die Skripte nach Forschungs- oder Teilfrage. Diese stammen Fallstudie „Grund zum Wohnen – Donut-Dörfer in der Pfalz“.
+Die QGIS-`.py`-Schritte werden innerhalb von QGIS ausgeführt, das eigenständige Python-Skript und die R-Skripte in ihrer jeweiligen Umgebung, in der nummerierten Reihenfolge. Die Datei-Präfixe (`TF`, `FF`) gruppieren die Skripte nach Forschungs- oder Teilfrage. Diese stammen aus der Fallstudie „Grund zum Wohnen – Donut-Dörfer in der Pfalz“.
 
 ## Eigentums-Vorprozessierung (Tietz et al.)
 
-Das Skript `tietz_eigentuemer_typisierung.py` liest die Roh-Eigentumstabelle ein und erzeugt eine aufbereitete Tabelle mit zusätzlichen Merkmalen. Es läuft in drei konzeptionellen Schritten:
+Das Skript `tietz_eigentuemer_typisierung.py` liest die Roh-Eigentumstabelle ein und erzeugt eine aufbereitete Tabelle mit zusätzlichen Merkmalen. Dieses läuft in drei konzeptionellen Schritten ab:
 
-1. **Kategorisierung** – jedem Datensatz wird ein Eigentümer:innen-Typ zugewiesen. Datensätze mit Vornamen gelten als natürliche Personen; die übrigen Datensätze werden über einen Schlüsselwortabgleich am Eigentümernamen den Typen Bund, Land, Kommune, Kirche und Unternehmen zugeordnet.
-2. **Konsolidierung (Matching)** – Datensätze, die sich auf dieselbe:n Eigentümer:in beziehen, werden über eine Union-Find-Struktur und einen mehrstufigen Abgleich zusammengeführt: phonetisch ähnliche Namen in Verbindung mit gleichem Geburtsdatum (natürliche Personen) oder gleicher Adresse (übrige Typen); ein Exact-Match-Verfahren als Rückfalloption ohne Geburtsdatum; sowie eine Prüfung auf Zahlendreher oder Tippfehler im Geburtsdatum.
-3. **Abgeleitete Merkmale** – nach der Konsolidierung berechnet das Skript die Anzahl der eindeutigen Eigentümer:innen pro Flurstück, die Anzahl der eindeutigen Flurstücke je konsolidierter:m Eigentümer:in sowie das Eigentümeralter aus dem Geburtsdatum und schreibt diese in die Tabelle zurück.
+1. **Kategorisierung** – jedem Datensatz wird ein Eigentümer:innen-Typ zugewiesen. Datensätze mit Vornamen gelten als natürliche Personen; die übrigen Datensätze werden über einen Schlüsselwortabgleich am Eigentümer:innen-Namen den Typen Bund, Land, Kommune, Kirche und Unternehmen zugeordnet.
+2. **Konsolidierung (Matching)** – Datensätze, die sich auf die gleiche Person beziehen, werden über eine Union-Find-Struktur und einen mehrstufigen Abgleich zusammengeführt. So zum Beispiel bei phonetisch ähnlichen Namen in Verbindung mit gleichem Geburtsdatum (natürliche Personen) oder gleicher Adresse (übrige Typen). Auch kommen ein Exact-Match-Verfahren als Rückfalloption ohne Geburtsdatum sowie eine Prüfung auf Zahlendreher oder Tippfehler im Geburtsdatum zum Einsatz.
+3. **Abgeleitete Merkmale** – nach der Konsolidierung berechnet das Skript die Anzahl der eindeutigen Eigentümer:innen pro Flurstück, die Anzahl der eindeutigen Flurstücke je konsolidierter:m Eigentümer:in sowie das Eigentümer:innen-Alter aus dem Geburtsdatum und schreibt diese in die Tabelle zurück.
 
 Der phonetische Abgleich verwendet die Kölner Phonetik (Postel 1969). Die aufbereitete Tabelle ist die Eingabe für den Aggregationsschritt.
 
@@ -73,4 +75,4 @@ Der phonetische Abgleich verwendet die Kölner Phonetik (Postel 1969). Die aufbe
 
 - **Ord, John Keith; Getis, Arthur (1995):** Local Spatial Autocorrelation Statistics: Distributional Issues and an Application. Geographical Analysis 27, 286–306. https://doi.org/10.1111/j.1538-4632.1995.tb00912.x
 - **Postel, Hans Joachim (1969):** Die Kölner Phonetik. Ein Verfahren zur Identifizierung von Personennamen auf der Grundlage der Gestaltanalyse. In: IBM-Nachrichten, 19. Jahrgang, 1969, S. 925-931.
-- **Tietz, Andreas; Bockelmann, Leo (2025):** Untersuchung von Landeigentumsstrukturen in Deutschland: Wem gehört die Landwirtschaftsfläche?, in: Raumforschung und Raumordnung: Spatial Research and Planning, Bd. 83, Nr. 4, S. 302-319.
+- **Tietz, Andreas; Neumann, Richard; Volkenand, Steffen (2021):** Untersuchung der Eigentumsstrukturen von Landwirtschaftsfläche in Deutschland, Thünen Report 85, Braunschweig: Johann Heinrich von Thünen-Institut.
