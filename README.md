@@ -10,9 +10,9 @@ Der Workflow ist auf einen einzelnen Siedlungskörper (Ortslage) ausgelegt, der 
 
 Zunächst werden die Eigentumsdaten typisiert und konsolidiert. Ausgehend von den Flurstücken wird die Landnutzung angefügt und korrigiert, die konsolidierten Eigentümer:innenmerkmale werden übernommen, das Ergebnis wird auf einen Datensatz je Flurstück aggregiert und auf den Siedlungskörper zugeschnitten. Anschließend werden Unternutzungen auf diese Flurstücke übertragen und nach ihrer Art aufgeteilt.
 
-Mit dem entstehenden Datensatz werden mehrere Analysen durchgeführt. Eine Hotspot-Analyse nach Getis-Ord Gi\* identifiziert statistisch signifikante Cluster hoher oder niedriger Werte für die Anzahl der Eigentümer:innen pro Flurstück, die Anzahl der Flurstücke pro Eigentümer:in und das Alter; die Distanzklasse je Variable wird automatisch über eine inkrementelle Bestimmung der räumlichen Autokorrelation nach Moran's I gewählt. Kreuztabellen fassen den Anteil der Unternutzung nach Landnutzung und nach Eigentümer:innen-Typ zusammen und werden als formatiertes Tabellendokument exportiert.
+Mit dem entstehenden Datensatz werden mehrere Analysen durchgeführt. Eine Hotspot-Analyse nach [Getis-Ord Gi\*](https://doi.org/10.1111/j.1538-4632.1995.tb00912.x) identifiziert statistisch signifikante Cluster hoher oder niedriger Werte für die Anzahl der Eigentümer:innen pro Flurstück, die Anzahl der Flurstücke pro Eigentümer:in und das Alter; die Distanzklasse je Variable wird automatisch über eine inkrementelle Bestimmung der räumlichen Autokorrelation nach Moran's I gewählt. Kreuztabellen fassen den Anteil der Unternutzung nach Landnutzung und nach Eigentümer:innen-Typ zusammen und werden als formatiertes Tabellendokument exportiert.
 
-Danach wird Gebäudealter wird auf einem zensusbasierten 100-m-Gitter ausgewertet, wobei in jeder Zelle das dominante Baujahrzehnt bestimmt wird.nDie räumliche Clusterung der Unternutzungen werden mit der Ripley-L-Funktion untersucht; ihre lokalen Maxima liefern charakteristische Clusterungsdistanzen auf mikro-, meso- und makrostruktureller Ebene. Diese Distanzen werden als Suchradien für die Kerndichteschätzung wiederverwendet und ergeben Heatmaps der Unternutzungsintensität.
+Danach wird Gebäudealter wird auf einem zensusbasierten 100-m-Gitter ausgewertet, wobei in jeder Zelle das dominante Baujahrzehnt bestimmt wird. Die räumliche Clusterung der Unternutzungen werden mit der Ripley-L-Funktion untersucht; ihre lokalen Maxima liefern charakteristische Clusterungsdistanzen auf mikro-, meso- und makrostruktureller Ebene. Diese Distanzen werden als Suchradien für die Kerndichteschätzung wiederverwendet und ergeben Heatmaps der Unternutzungsintensität.
 
 ## Output
 
@@ -71,5 +71,6 @@ Der phonetische Abgleich verwendet die Kölner Phonetik (Postel 1969). Die aufbe
 
 ## Literatur
 
+- **Ord, John Keith; Getis, Arthur (1995):** Local Spatial Autocorrelation Statistics: Distributional Issues and an Application. Geographical Analysis 27, 286–306. https://doi.org/10.1111/j.1538-4632.1995.tb00912.x
 - **Postel, Hans Joachim (1969):** Die Kölner Phonetik. Ein Verfahren zur Identifizierung von Personennamen auf der Grundlage der Gestaltanalyse. In: IBM-Nachrichten, 19. Jahrgang, 1969, S. 925-931.
 - **Tietz, Andreas; Bockelmann, Leo (2025):** Untersuchung von Landeigentumsstrukturen in Deutschland: Wem gehört die Landwirtschaftsfläche?, in: Raumforschung und Raumordnung: Spatial Research and Planning, Bd. 83, Nr. 4, S. 302-319.
