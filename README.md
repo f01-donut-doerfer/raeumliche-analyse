@@ -35,11 +35,11 @@ Die Prozessierung nutzt eine Vielzahl an Datenquellen. Mehr Informationen über 
 
 ### Voraussetzungen
 
-Der Workflow verwendet [Python](https://www.python.org), [QGIS](https://qgis.org) und [R](https://www.r-project.org). Die lokale Installation von Python Libraries und R-Paketen ist vorausgesetzt und im Code integriert. Mehr Informationen zu den Versionen und Modulen sind in dem Dokument [software_used.md](https://github.com/f01-donut-doerfer/raeumliche-analyse/blob/main/software_used.md) enthalten.
+Der Workflow verwendet [Python](https://www.python.org), [QGIS](https://qgis.org) und [R](https://www.r-project.org). Die lokale Installation der Python Libraries und R-Pakete wird vorausgesetzt; Im Code ist die Möglichkeit einer automatischen Installation gegeben. Mehr Informationen zu den Versionen und Modulen sind in dem Dokument [software_used.md](https://github.com/f01-donut-doerfer/raeumliche-analyse/blob/main/software_used.md) enthalten.
 
 ### Vor der Ausführung
 
-- Projektordner festlegen. Alle Skripte leiten ihre Pfade relativ zum Skriptverzeichnis ab; bei Bedarf kann am Anfang jeder Datei ein fester Ersatzpfad gesetzt werden. Der Standard ist das einfache Herunterladen des Repositories als Ordner.
+- Projektordner festlegen. Alle Skripte leiten ihre Pfade relativ zum Skriptverzeichnis ab; bei Bedarf kann am Anfang jeder Datei ein fester Ersatzpfad gesetzt werden. Der Standard ist das einfache Herunterladen und Nutzen des Repositories als Ordner.
 - Die Eingabedateien in den Ordner `input` legen.
 - Die Eigentums-Vorprozessierung zuerst ausführen, damit die konsolidierte Eigentümertabelle für den Aggregationsschritt bereitsteht.
 
@@ -57,7 +57,7 @@ Der Prozess umfasst diese Hauptschritte:
 7. **Ripley-L** (`05_FF1_RipleyL.R`, R) – Clusteranalyse der Unternutzungspunkte und Bestimmung charakteristischer Clusterungsdistanzen.
 8. **KDE-Heatmaps** (`06_FF1_KDE_Heatmap.py`, QGIS) – Kerndichteschätzung der Unternutzungsintensität, wobei die Clusterungsdistanzen aus dem Ripley-L-Schritt als Suchradien dienen.
 
-Die QGIS-`.py`-Schritte werden innerhalb von QGIS ausgeführt, das eigenständige Python-Skript und die R-Schritte in ihrer jeweiligen Umgebung, in der nummerierten Reihenfolge. Die Datei-Präfixe (`TF`, `FF`) gruppieren die Skripte nach Forschungs- oder Teilfrage. Diese stammen Fallstudie „Grund zum Wohnen – Donut-Dörfer in der Pfalz“.
+Die QGIS-`.py`-Schritte werden innerhalb von QGIS ausgeführt, das eigenständige Python-Skript und die R-Skripte in ihrer jeweiligen Umgebung, in der nummerierten Reihenfolge. Die Datei-Präfixe (`TF`, `FF`) gruppieren die Skripte nach Forschungs- oder Teilfrage. Diese stammen Fallstudie „Grund zum Wohnen – Donut-Dörfer in der Pfalz“.
 
 ## Eigentums-Vorprozessierung (Tietz et al.)
 
